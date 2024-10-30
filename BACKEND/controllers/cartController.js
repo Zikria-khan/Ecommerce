@@ -1,6 +1,5 @@
 const Order = require('../models/orderModel'); // Adjust the import based on your project structure
 const Product = require('../models/productModel'); // Import your product model
-const stripe = require('../config/stripeConfig'); // Import your Stripe configuration
 
 // Add product to cart
 const addToCart = async (req, res) => {
@@ -8,27 +7,28 @@ const addToCart = async (req, res) => {
     const userId = req.user.id; // Ensure you're getting the user's ID correctly
   
     try {
-      // Logic to add the product to the cart goes here
-      const cart = await Order.findOne({ user: userId }) || new Order({ user: userId, products: [] });
-  
-      const existingProductIndex = cart.products.findIndex(item => item.product.toString() === productId);
-      if (existingProductIndex > -1) {
-        // Product already exists in cart, update quantity
-        cart.products[existingProductIndex].quantity += quantity;
-      } else {
-        // Add new product to cart
-        cart.products.push({ product: productId, quantity });
-      }
-  
-      await cart.save();
-  
-      return res.status(200).json({ success: true, message: 'Product added to cart successfully!' });
+        // Logic to add the product to the cart goes here
+        const cart = await Order.findOne({ user: userId }) || new Order({ user: userId, products: [] });
+
+        const existingProductIndex = cart.products.findIndex(item => item.product.toString() === productId);
+        if (existingProductIndex > -1) {
+            // Product already exists in cart, update quantity
+            cart.products[existingProductIndex].quantity += quantity;
+        } else {
+            // Add new product to cart
+            cart.products.push({ product: productId, quantity });
+        }
+
+        await cart.save();
+
+        return res.status(200).json({ success: true, message: 'Product added to cart successfully!' });
     } catch (error) {
-      console.error('Error adding to cart:', error);
-      return res.status(500).json({ success: false, message: 'Internal server error' });
+        console.error('Error adding to cart:', error);
+        return res.status(500).json({ success: false, message: 'Internal server error' });
     }
-  };
-  // Remove product from cart
+};
+
+// Remove product from cart
 const removeFromCart = async (req, res) => {
     const { productId } = req.body;
     const userId = req.user.id;
@@ -51,6 +51,7 @@ const removeFromCart = async (req, res) => {
         return res.status(500).json({ message: 'Internal server error' });
     }
 };
+
 // Get all cart items for a specific user
 const getCartItems = async (req, res) => {
     const { userId } = req.body; // Extract userId from the request body
@@ -69,8 +70,7 @@ const getCartItems = async (req, res) => {
     }
 };
 
-
-// Checkout process
+// Checkout process without Stripe
 const checkout = async (req, res) => {
     const userId = req.user.id;
 
@@ -84,17 +84,10 @@ const checkout = async (req, res) => {
         // Calculate total amount
         const totalAmount = cart.products.reduce((total, item) => total + item.quantity * item.product.price, 0);
 
-        // Create a payment intent with Stripe
-        const paymentIntent = await stripe.paymentIntents.create({
-            amount: totalAmount * 100, // Amount in cents
-            currency: 'usd',
-            payment_method_types: ['card'],
-        });
-
-        res.json({ clientSecret: paymentIntent.client_secret });
+        res.json({ totalAmount, message: 'Checkout complete. Proceed with payment manually.' });
     } catch (error) {
-        console.error('Error creating Stripe payment:', error);
-        res.status(500).json({ message: 'Error creating payment' });
+        console.error('Error during checkout:', error);
+        res.status(500).json({ message: 'Error during checkout' });
     }
 };
 
