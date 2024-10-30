@@ -17,6 +17,21 @@
     max-width: 250px; /* Set a max width */
     min-width: 200px; /* Set a min width */
 }
+.view-details-button {
+    background-color: #007bff; /* Blue */
+    color: white;
+    border: none;
+    padding: 8px 10px; /* Adjusted padding */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 0.9em;
+}
+
+.view-details-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly grow the button on hover */
+}
 
 .product-card:hover {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
