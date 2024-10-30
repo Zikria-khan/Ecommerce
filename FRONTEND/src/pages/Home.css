@@ -1,0 +1,127 @@
+/* Home.css */
+
+.home-container {
+  font-family: 'Arial', sans-serif; /* Font for the entire home page */
+  background-color: #f4f4f4; /* Light gray background */
+  padding: 0; /* No padding on the container */
+}
+
+.navbar {
+  background-color: #ffffff; /* White background for navbar */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  z-index: 1000; /* Ensure navbar stays on top */
+}
+
+.image-slider {
+  width: 100%; /* Full width for image slider */
+  height: 300px; /* Fixed height for image slider */
+  overflow: hidden; /* Hide overflow */
+}
+
+.image-slider img {
+  width: 100%; /* Responsive images */
+  height: 300px; /* Ensure uniform height */
+  object-fit: cover; /* Cover the area without distorting */
+}
+
+.product-list {
+  padding: 20px; /* Space around the product list */
+  max-width: 1200px; /* Limit max width */
+  margin: auto; /* Center the product list */
+}
+
+h2 {
+  text-align: center; /* Center title */
+  font-size: 24px; /* Font size for the title */
+  margin-bottom: 20px; /* Space below title */
+  color: #333; /* Dark text color */
+}
+
+.category-buttons {
+  display: flex;
+  justify-content: center; /* Center buttons */
+  margin-bottom: 20px; /* Space below buttons */
+  flex-wrap: wrap; /* Wrap buttons on smaller screens */
+}
+
+.category-buttons button {
+  margin: 5px; /* Space between buttons */
+  padding: 10px 15px; /* Button padding */
+  background-color: #007bff; /* Primary button color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+}
+
+.category-buttons button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px); /* Lift effect */
+}
+
+.category-buttons button.active {
+  background-color: #0056b3; /* Active button color */
+}
+
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Space between products */
+}
+
+.product-card {
+  background-color: white; /* Card background */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  overflow: hidden; /* Prevent overflow */
+  text-align: center; /* Center text */
+  transition: transform 0.3s, box-shadow 0.3s; /* Transition effects */
+}
+
+.product-card:hover {
+  transform: translateY(-3px); /* Lift effect on hover */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+.product-image {
+  width: 100%; /* Responsive image width */
+  height: 150px; /* Fixed height for images */
+  object-fit: cover; /* Maintain aspect ratio */
+}
+
+.product-name {
+  font-size: 16px; /* Font size for product name */
+  margin: 10px 0; /* Margin for spacing */
+  font-weight: bold; /* Bold product name */
+}
+
+.product-description {
+  font-size: 12px; /* Font size for description */
+  color: #666; /* Gray color for description text */
+  margin: 5px 0; /* Spacing for description */
+}
+
+.product-price {
+  font-size: 14px; /* Font size for price */
+  color: #d9534f; /* Price color */
+  font-weight: bold; /* Bold price */
+}
+
+/* Loading and Error States */
+.loading, .error {
+  text-align: center; /* Center loading and error messages */
+  font-size: 18px; /* Larger font size */
+  color: #888; /* Gray color */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .category-buttons button {
+      flex: 1 1 100%; /* Full width on small screens */
+  }
+
+  .image-slider {
+      height: 200px; /* Smaller height for mobile */
+  }
+}

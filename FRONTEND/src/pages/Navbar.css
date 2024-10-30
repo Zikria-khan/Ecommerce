@@ -1,0 +1,67 @@
+/* Navbar.css */
+
+.navbar {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space between logo and links */
+  align-items: center; /* Center items vertically */
+  padding: 10px 20px; /* Padding for the navbar */
+  background-color: #fff; /* White background */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  position: sticky; /* Fix the navbar at the top */
+  top: 0; /* Position at the top */
+  z-index: 1000; /* Ensure it stays above other content */
+}
+
+.navbar-logo {
+  flex-grow: 1; /* Allow the logo to take space */
+}
+
+.navbar-title {
+  font-size: 24px; /* Font size for the title */
+  color: #333; /* Dark color for the title */
+  margin: 0; /* Remove default margin */
+}
+
+.navbar-links {
+  list-style: none; /* Remove bullet points */
+  display: flex; /* Flexbox for links */
+  gap: 20px; /* Space between links */
+  margin: 0; /* Remove default margin */
+}
+
+.navbar-links li {
+  display: inline; /* Inline display for list items */
+}
+
+.navbar-links a {
+  text-decoration: none; /* Remove underline */
+  color: #007bff; /* Primary color for links */
+  font-size: 16px; /* Font size for links */
+  transition: color 0.3s; /* Transition for hover effect */
+}
+
+.navbar-links a:hover {
+  color: #0056b3; /* Darker color on hover */
+}
+
+.navbar-links a.active {
+  font-weight: bold; /* Bold active link */
+  color: #d9534f; /* Color for active link */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+      flex-direction: column; /* Stack items vertically on small screens */
+      align-items: flex-start; /* Align items to start */
+  }
+
+  .navbar-links {
+      flex-direction: column; /* Stack links vertically */
+      width: 100%; /* Full width for links */
+  }
+
+  .navbar-links li {
+      margin-bottom: 10px; /* Space between links */
+  }
+}
