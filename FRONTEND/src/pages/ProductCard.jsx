@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './ProductCard.css'; // Ensure this CSS file is updated as well
+import './ProductCard.css';
 
 const ProductCard = ({ product, onAddToCart }) => {
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
 
-  const handleAddToCart = async () => {
+  const handleAddToCart = async (event) => {
+    event.stopPropagation(); // Prevent triggering card click
     const token = localStorage.getItem('token');
     if (!token) {
       alert('You need to be logged in to add items to the cart. Please log in or register.');
       navigate('/login');
       return;
     }
-
     await onAddToCart(product._id, quantity);
   };
 
@@ -22,6 +22,11 @@ const ProductCard = ({ product, onAddToCart }) => {
   };
 
   const handleCardClick = () => {
+    navigate(`/products/${product._id}`);
+  };
+
+  const handleViewDetailsClick = (event) => {
+    event.stopPropagation(); // Prevent card click from triggering
     navigate(`/products/${product._id}`);
   };
 
@@ -43,6 +48,12 @@ const ProductCard = ({ product, onAddToCart }) => {
         onClick={handleAddToCart}
       >
         Add to Cart
+      </button>
+      <button
+        className="view-details-button"
+        onClick={handleViewDetailsClick}
+      >
+        View Details
       </button>
     </div>
   );
