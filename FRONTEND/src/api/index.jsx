@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:8000/api';
+const API_BASE = 'https://ecommerce-rho-lake.vercel.app/api'; // Update to your Vercel API URL
 
 const getAuthHeaders = () => {
   const token = localStorage.getItem('token');
@@ -33,7 +33,6 @@ export const registerUser = async ({ name, email, password }) => {
   const data = await response.json();
   return { success: true, ...data }; // Ensure to return success flag along with data
 };
-
 
 export const loginUser = async (userData) => {
   const response = await fetch(`${API_BASE}/auth/login`, {
@@ -75,6 +74,7 @@ export const removeFromCart = async (productId) => {
   });
   return handleResponse(response);
 };
+
 // Update the API function to send the user ID
 export const getCartItems = async () => {
   const token = localStorage.getItem('token');
