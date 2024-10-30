@@ -1,4 +1,69 @@
 /* ProductCard.css */
+.add-to-cart-button, .view-details-button {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.add-to-cart-button:hover, .view-details-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px; /* Reduce padding */
+    margin: 10px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s, transform 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 280px; /* Decrease height */
+    max-width: 250px;
+    min-width: 200px;
+}
+
+/* Additional adjustments for responsiveness */
+.product-name {
+    font-size: 1em;
+    margin: 3px 0;
+}
+
+.product-description {
+    font-size: 0.8em;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.quantity-input, .add-to-cart-button, .view-details-button {
+    margin: 4px 0; /* Ensure small vertical spacing */
+}
+
+.add-to-cart-button, .view-details-button {
+    padding: 6px 8px; /* Adjust padding */
+    font-size: 0.85em;
+}
+
+.view-details-button {
+    background-color: #007bff; /* Different color for view details */
+}
+
+.view-details-button:hover {
+    background-color: #0056b3;
+}
+
 .product-card {
     border: 1px solid #ddd;
     border-radius: 8px;
